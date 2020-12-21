@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       answers: {
-        type: Sequelize.STRING
+        type: Sequelize.ARRAY(Sequelize.STRING) 
       },
       correctAnswer: {
         type: Sequelize.STRING

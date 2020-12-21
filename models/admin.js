@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { passHelper } = require('../helpers')
 module.exports = (sequelize, DataTypes) => {
   class Admin extends Model {
     /**
@@ -17,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate: (admin) =>{
+        admin.password = passHelper.generatePassword(admin.password)
+      }
+    },
     sequelize,
     modelName: 'Admin',
   });

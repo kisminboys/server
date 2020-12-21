@@ -15,7 +15,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Admin.init({
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        unique: true,
+        isEmail: {
+          args: true,
+          msg: "must be an email"
+        }
+      }
+    },
     password: DataTypes.STRING
   }, {
     hooks: {

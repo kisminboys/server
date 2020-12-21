@@ -14,7 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   QuestionBank.init({
-    question: DataTypes.STRING,
+    question: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Can not be empty'
+        }
+      }
+    },
     answers: DataTypes.STRING,
     correctAnswer: DataTypes.STRING,
     SubjectId: DataTypes.INTEGER

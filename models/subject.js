@@ -10,12 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Subject.belongsTo(models.Teacher)
     }
   };
   Subject.init({
-    title: DataTypes.STRING,
-    TeacherId: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    TeacherId: {
+      type: DataTypes.INTEGER,
+    },
   }, {
     sequelize,
     modelName: 'Subject',

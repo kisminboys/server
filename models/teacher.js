@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const {passHelper} = require('../helpers')
+
 module.exports = (sequelize, DataTypes) => {
   class Teacher extends Model {
     /**
@@ -100,6 +103,20 @@ module.exports = (sequelize, DataTypes) => {
     },
     SubjectId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate (instance, options) {
+        if(!instance.email) {
+          let temp = ''
+          for(let i = 0; i < instance.lastName.length; i++) {
+            if(temp.length === 4) break
+            else temp += instance.lastName[i]
+          }
+          instance.email = `${instance.firstName.split(' ')[0]}.${temp}@school.com`
+        }
+        instance.password = passHelper.generatePassword(instance.password)
+        if(!instance.fullName) instance.fullName = `${instance.firstName} ${instance.lastName}`
+      }
+    },
     sequelize,
     modelName: 'Teacher',
   });

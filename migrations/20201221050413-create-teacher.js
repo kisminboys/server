@@ -39,9 +39,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      ClassroomId: {
-        type: Sequelize.INTEGER
-      },
+      // ClassroomId: {
+      //   type: Sequelize.INTEGER
+      // },
       SubjectId: {
         type: Sequelize.INTEGER
       },

@@ -2,18 +2,18 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addConstraint('Students', {
-      fields: ['ClassroomId'],
-      type: 'foreign key',
-      name: 'classroomid_students',
-      references: { //Required field
-        table: 'Classrooms',
-        field: 'id'
-      },
-      onDelete: 'cascade',
-      onUpdate: 'cascade'
-    })
-      .then(() => {
+    // return queryInterface.addConstraint('Students', {
+    //   fields: ['ClassroomId'],
+    //   type: 'foreign key',
+    //   name: 'classroomid_students',
+    //   references: { //Required field
+    //     table: 'Classrooms',
+    //     field: 'id'
+    //   },
+    //   onDelete: 'cascade',
+    //   onUpdate: 'cascade'
+    // })
+    //   .then(() => {
         return queryInterface.addConstraint('Classrooms', {
           fields: ['StudentId'],
           type: 'foreign key',
@@ -25,7 +25,7 @@ module.exports = {
           onDelete: 'cascade',
           onUpdate: 'cascade'
         })
-      })
+      // })
       .then(() => {
         return queryInterface.addConstraint('Classrooms', {
           fields: ['TeacherId'],
@@ -39,19 +39,19 @@ module.exports = {
           onUpdate: 'cascade'
         })
       })
-      .then(() => {
-        return queryInterface.addConstraint('Teachers', {
-          fields: ['ClassroomId'],
-          type: 'foreign key',
-          name: 'classroomid_teachers',
-          references: { //Required field
-            table: 'Classrooms',
-            field: 'id'
-          },
-          onDelete: 'cascade',
-          onUpdate: 'cascade'
-        })
-      })
+      // .then(() => {
+      //   return queryInterface.addConstraint('Teachers', {
+      //     fields: ['ClassroomId'],
+      //     type: 'foreign key',
+      //     name: 'classroomid_teachers',
+      //     references: { //Required field
+      //       table: 'Classrooms',
+      //       field: 'id'
+      //     },
+      //     onDelete: 'cascade',
+      //     onUpdate: 'cascade'
+      //   })
+      // })
       .then(() => {
         return queryInterface.addConstraint('Teachers', {
           fields: ['SubjectId'],
@@ -133,16 +133,16 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeConstraint('Students', 'classroomid_students')
-      .then(() => {
+    // return queryInterface.removeConstraint('Students', 'classroomid_students')
+    //   .then(() => {
         return queryInterface.removeConstraint('Classrooms', 'studentid_classrooms')
-      })
+      // })
       .then(() => {
         return queryInterface.removeConstraint('Classrooms', 'teacherid_classrooms')
       })
-      .then(() => {
-        return queryInterface.removeConstraint('Teachers', 'classroomid_teachers')
-      })
+      // .then(() => {
+      //   return queryInterface.removeConstraint('Teachers', 'classroomid_teachers')
+      // })
       .then(() => {
         return queryInterface.removeConstraint('Teachers', 'subjectid_teachers')
       })

@@ -45,9 +45,9 @@ module.exports = {
       batch: {
         type: Sequelize.INTEGER
       },
-      ClassroomId: {
-        type: Sequelize.INTEGER
-      },
+      // ClassroomId: {
+      //   type: Sequelize.INTEGER
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -117,19 +117,19 @@ module.exports = {
           onUpdate: 'cascade'
         })
       })
-      .then(() => {
-        return queryInterface.addConstraint('Exams', {
-          fields: ['QuestionBankId'],
-          type: 'foreign key',
-          name: 'questionbankid_exams',
-          references: { //Required field
-            table: 'QuestionBanks',
-            field: 'id'
-          },
-          onDelete: 'cascade',
-          onUpdate: 'cascade'
-        })
-      })
+      // .then(() => {
+      //   return queryInterface.addConstraint('Exams', {
+      //     fields: ['QuestionBankId'],
+      //     type: 'foreign key',
+      //     name: 'questionbankid_exams',
+      //     references: { //Required field
+      //       table: 'QuestionBanks',
+      //       field: 'id'
+      //     },
+      //     onDelete: 'cascade',
+      //     onUpdate: 'cascade'
+      //   })
+      // })
   },
 
   down: (queryInterface, Sequelize) => {
@@ -158,8 +158,8 @@ module.exports = {
       .then(() => {
         return queryInterface.removeConstraint('Exams', 'subjectid_exams')
       })
-      .then(() => {
-        return queryInterface.removeConstraint('Exams', 'questionbankid_exams')
-      })
+      // .then(() => {
+      //   return queryInterface.removeConstraint('Exams', 'questionbankid_exams')
+      // })
   }
 };

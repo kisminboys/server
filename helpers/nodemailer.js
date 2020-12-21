@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer')
 
-function sendEmail(email) {
+function sendEmail(email, regEmail, regPassword) {
   const output = `
     <p>Register succeed!</p>
     <h3>Account details:</h3>
     <ul>
-      <li>Email: ${email}</li>
+      <li>Email: ${regEmail}</li>
+      <li>Password: ${regPassword}</li>
     </ul>
     <h3>Thanks for using this web app!</h3>
   `

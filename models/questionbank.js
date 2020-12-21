@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Can not be empty'
-        }
+        },
       }
     },
     answers: DataTypes.STRING,

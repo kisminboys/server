@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Subject.belongsTo(models.Teacher)
+      Subject.hasMany(models.Teacher)
     }
   };
   Subject.init({
@@ -19,9 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: true
       }
-    },
-    TeacherId: {
-      type: DataTypes.INTEGER,
     },
   }, {
     sequelize,

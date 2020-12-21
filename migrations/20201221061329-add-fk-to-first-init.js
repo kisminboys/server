@@ -65,19 +65,19 @@ module.exports = {
           onUpdate: 'cascade'
         })
       })
-      .then(() => {
-        return queryInterface.addConstraint('Subjects', {
-          fields: ['TeacherId'],
-          type: 'foreign key',
-          name: 'teacherid_subjects',
-          references: { //Required field
-            table: 'Teachers',
-            field: 'id'
-          },
-          onDelete: 'cascade',
-          onUpdate: 'cascade'
-        })
-      })
+      // .then(() => {
+      //   return queryInterface.addConstraint('Subjects', {
+      //     fields: ['TeacherId'],
+      //     type: 'foreign key',
+      //     name: 'teacherid_subjects',
+      //     references: { //Required field
+      //       table: 'Teachers',
+      //       field: 'id'
+      //     },
+      //     onDelete: 'cascade',
+      //     onUpdate: 'cascade'
+      //   })
+      // })
       .then(() => {
         return queryInterface.addConstraint('QuestionBanks', {
           fields: ['SubjectId'],
@@ -146,9 +146,9 @@ module.exports = {
       .then(() => {
         return queryInterface.removeConstraint('Teachers', 'subjectid_teachers')
       })
-      .then(() => {
-        return queryInterface.removeConstraint('Subjects', 'teacherid_subjects')
-      })
+      // .then(() => {
+      //   return queryInterface.removeConstraint('Subjects', 'teacherid_subjects')
+      // })
       .then(() => {
         return queryInterface.removeConstraint('QuestionBanks', 'subjectid_questionbanks')
       })

@@ -113,7 +113,7 @@ module.exports = (sequelize, DataTypes) => {
           }
           instance.email = `${instance.firstName.split(' ')[0]}.${temp}@school.com`
         }
-        instance.password = passHelper.generatePassword('teacher123')
+        instance.password = passHelper.generatePassword(process.env.DEFAULT_TEACHER_PASS)
         if(!instance.fullName) instance.fullName = `${instance.firstName} ${instance.lastName}`
       }
     },

@@ -1,3 +1,4 @@
 module.exports = {
-  Admin: require('./Admin')
+  Admin: require('./Admin'),
+  Student: require('./Student')
 }

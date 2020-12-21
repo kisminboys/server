@@ -25,11 +25,26 @@ module.exports = (sequelize, DataTypes) => {
     birthDate: DataTypes.DATEONLY,
     password: DataTypes.STRING,
     activation: DataTypes.STRING,
-    batch: DataTypes.INTEGER,
-    ClassroomId: DataTypes.INTEGER
+    batch: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Student',
   });
+
+  Student.addHook('beforeCreate', student => {
+    if (!student.fullName) student.fullName = `${student.firstName} ${student.lastName}`
+  })
+
+  Student.addHook('beforeCreate', student => {
+    if (!student.email) {
+      let temp
+      for (let i = 0; i < student.lastName.length; i++) {
+        if (temp.length === 4) break
+        else temp += student.lastName[i]
+      }
+      student.email = `${student.firstName}.${temp}@mail.com`
+    }
+  })
+
   return Student;
 };

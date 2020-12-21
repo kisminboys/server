@@ -11,11 +11,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Classroom.belongsTo(models.Student)
+      Classroom.belongsTo(models.Teacher)
     }
   };
   Classroom.init({
-    className: DataTypes.STRING,
-    teacherRole: DataTypes.STRING,
+    className: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'class name can not be empty'
+        }
+      }
+    },
+    teacherRole: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'role can not be empty'
+        }
+      }
+    },
     StudentId: DataTypes.INTEGER,
     TeacherId: DataTypes.INTEGER
   }, {

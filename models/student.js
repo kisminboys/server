@@ -1,4 +1,5 @@
 'use strict';
+const { passHelper } = require('../helpers')
 const {
   Model
 } = require('sequelize');
@@ -12,37 +13,100 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
   };
   Student.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `First Name can't be empty` }
+      }
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Last Name can't be empty` }
+      }
+    },
     fullName: DataTypes.STRING,
-    address: DataTypes.STRING,
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Address can't be empty` }
+      }
+    },
     email: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Phone Number can't be empty` }
+      }
+    },
     photo: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    birthDate: DataTypes.DATEONLY,
-    password: DataTypes.STRING,
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Gender can't be empty` }
+      }
+    },
+    birthDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Birthdate can't be empty` }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Password can't be empty` }
+      }
+    },
     activation: DataTypes.STRING,
-    batch: DataTypes.INTEGER
+    batch: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { args: true, msg: `Batch can't be empty` }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Student',
   });
 
+  let getFullName
+
   Student.addHook('beforeCreate', student => {
-    if (!student.fullName) student.fullName = `${student.firstName} ${student.lastName}`
+    if (!student.fullName) {
+      student.fullName = `${student.firstName} ${student.lastName}`
+      getFullName = student.fullName
+    }
+  })
+
+  Student.addHook('beforeCreate', student => {
+    if (!student.activation) student.activation = 'Not Active'
+  })
+
+  Student.addHook('beforeCreate', student => {
+    if (!student.password) student.password = passHelper.generatePassword(process.env.DEFAULT_STUDENT_PASS)
   })
 
   Student.addHook('beforeCreate', student => {
     if (!student.email) {
       let temp
-      for (let i = 0; i < student.lastName.length; i++) {
-        if (temp.length === 4) break
-        else temp += student.lastName[i]
+      for (let i = 0; i < getFullName.length; i++) {
+        if (getFullName[i] === ' ') temp += '.'
+        else if (getFullName[i - 5] === ' ') break
+        else temp += getFullName[i]
       }
-      student.email = `${student.firstName}.${temp}@mail.com`
+      student.email = `${temp}${student.batch}@school.com`
     }
   })
 

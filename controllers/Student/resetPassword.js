@@ -3,11 +3,11 @@ const { passHelper } = require('../../helpers')
 
 module.exports = async (req, res, next) => {
   try {
-    const findStudent = await Student.findOne({ where: { email: req.loggedIn.email } })
+    const findStudent = await Student.findOne({ where: { email: req.loginUser.email } })
     const oldPassword = passHelper.comparePassword(req.body.oldPassword, findStudent.password)
     if (!oldPassword) throw { status: 400, message: 'Wrong password' }
     else {
-      const changePassword = { password: passHelper.generatePassword(req.body.newPassword) }
+      const changePassword = { password: passHelper.generatePassword(req.body.newPassword), activation: 'Active' }
       await Student.update(changePassword, { where: { email: findStudent.email } })
       res.status(200).json({ message: 'Password changed!' })
     }

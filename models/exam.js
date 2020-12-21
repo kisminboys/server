@@ -60,19 +60,19 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Subject ID should not be empty"
         },
       }
-    },
-    QuestionBankId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: "QuestionBank ID should not be empty!"
-        },
-        notNull: {
-          msg: "QuestionBank ID should not be empty"
-        },
-      }
     }
+    // QuestionBankId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   validate: {
+    //     notEmpty: {
+    //       msg: "QuestionBank ID should not be empty!"
+    //     },
+    //     notNull: {
+    //       msg: "QuestionBank ID should not be empty"
+    //     },
+    //   }
+    // }
   }, {
     sequelize,
     modelName: 'Exam',

@@ -5,8 +5,8 @@ module.exports = async (req, res, next) => {
   const id = req.loginUser.id
   
   const payload = {
-    oldPassword = req.body.oldPassword,
-    newPassword = req.body.newPassword
+    oldPassword: req.body.oldPassword,
+    newPassword: req.body.newPassword
   }
 
   try {

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       }
     },
-    answers: DataTypes.STRING,
+    answers: DataTypes.ARRAY(DataTypes.STRING),
     correctAnswer: DataTypes.STRING,
     SubjectId: DataTypes.INTEGER
   }, {

@@ -8,6 +8,7 @@ function sendEmail(email, regEmail, regPassword) {
       <li>Email: ${regEmail}</li>
       <li>Password: ${regPassword}</li>
     </ul>
+    <p>Please upload your photo with format 3x4 and change your password immediately:)</p>
     <h3>Thanks for using this web app!</h3>
   `
   

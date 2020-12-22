@@ -1,4 +1,3 @@
-const { sendEmail } = require('../../helpers')
 const { Student } = require('../../models')
 const { sendEmail } = require('../../helpers')
 
@@ -12,13 +11,22 @@ module.exports = async (req, res, next) => {
       photo: req.body.photo,
       gender: req.body.gender,
       birthDate: req.body.birthDate,
-      password: req.body.password,
-      activation: req.body.activation,
       batch: req.body.batch
     }
     const newData = await Student.create(data)
     if (newData) {
-      sendEmail(req.body.email, newData.email, req.body.password)
+      sendEmail(req.body.email, newData.email, process.env.DEFAULT_STUDENT_PASS)
+      res.status(201).json({
+        id: newData.id,
+        firstName: newData.firstName,
+        lastName: newData.lastName,
+        address: newData.address,
+        phoneNumber: newData.phoneNumber,
+        gender: newData.gender,
+        birthDate: newData.birthDate,
+        activation: newData.activation,
+        batch: newData.batch
+      })
     }
   } catch (error) {
     next(error)

@@ -5,5 +5,6 @@ module.exports = {
   Exam: require('./Exam'),
   Subject: require('./Subject'),
   Teacher: require('./Teacher'),
-  QuestionBank: require('./QuestionBank')
+  QuestionBank: require('./QuestionBank'),
+  Login: require('./login')
 }

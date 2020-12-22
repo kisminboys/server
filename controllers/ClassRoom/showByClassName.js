@@ -1,11 +1,11 @@
 const { Classroom } = require('../../models')
 
 module.exports = (req, res, next) => {
-  Classroom.findOne({
+  Classroom.findAll({
     where: {
-      id: req.params.id
+      className: req.params.className
     }
-  })
+  }, { include: { all: true } })
   .then(classroom => {
     if (classroom) {
       res.status(200).json(classroom)

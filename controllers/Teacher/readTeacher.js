@@ -1,4 +1,4 @@
-const { Teacher } = require('../../models')
+const { Teacher, Classroom, Subject } = require('../../models')
 
 module.exports = async (req, res, next) => {
   try {

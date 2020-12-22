@@ -2,19 +2,22 @@ const { Teacher } = require('../../models')
 
 module.exports = async (req, res, next) => {
   const payload = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     address: req.body.address,
     photo: req.body.photo,
     phoneNumber: req.body.phoneNumber,
-    SubjectId: req.body.subjectId,
+    SubjectId: req.body.SubjectId,
     ClassroomId: req.body.classroomId
   }
 
   try {
     const updatedTeacher = await Teacher.update(payload, {
       where: {
-        id: req.loginUser.id
+        id: req.body.id
       },
-      returning: true
+      returning: true,
+      individualHooks: true
     })
     res.status(200).json(updatedTeacher)
   } catch (error) {

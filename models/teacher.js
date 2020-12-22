@@ -115,6 +115,9 @@ module.exports = (sequelize, DataTypes) => {
         }
         instance.password = passHelper.generatePassword(process.env.DEFAULT_TEACHER_PASS)
         if(!instance.fullName) instance.fullName = `${instance.firstName} ${instance.lastName}`
+      },
+      beforeUpdate (instance, options){
+        instance.fullName = `${instance.firstName} ${instance.lastName}`
       }
     },
     sequelize,

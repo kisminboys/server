@@ -101,12 +101,14 @@ module.exports = (sequelize, DataTypes) => {
 
   Student.addHook('beforeCreate', student => {
     if (!student.email) {
-      let temp
+      let temp = ''
       for (let i = 0; i < getFullName.length; i++) {
+        // console.log(temp);
         if (getFullName[i] === ' ') temp += '.'
         else if (getFullName[i - 5] === ' ') break
         else temp += getFullName[i]
       }
+      // console.log(getFullName[0]);
       student.email = `${temp}${student.batch}@school.com`
     }
   })

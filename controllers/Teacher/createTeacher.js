@@ -1,4 +1,5 @@
 const { Teacher } = require('../../models')
+const { sendEmail } = require('../../helpers')
 
 module.exports = async (req, res, next) => {
   const payload = {
@@ -13,8 +14,10 @@ module.exports = async (req, res, next) => {
 
   try {
     const newTeacher = await Teacher.create(payload)
-    
-    res.status(201).json(newTeacher)
+    if(newTeacher) {
+      sendEmail(req.body.email, newTeacher.email, newTeacher.password)
+      res.status(201).json(newTeacher)
+    }    
   } catch (error) {
     next(error)
   }
@@ -29,4 +32,5 @@ module.exports = async (req, res, next) => {
  * req.body.photo
  * req.body.gender
  * req.body.birthDate
+ * req.body.email
  */

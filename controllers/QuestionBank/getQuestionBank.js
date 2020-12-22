@@ -1,9 +1,9 @@
-const { QuestionBank } = require('../../models')
+const { QuestionBank, Subject } = require('../../models')
 
 module.exports = async (req,res,next) => {
   try {
     const id = req.params.id
-    const data = await QuestionBank.findOne({where: {id}})
+    const data = await QuestionBank.findOne({where: {id}, include: [ Subject ]})
     if (data) {
       res.status(200).json(data)
     } else {

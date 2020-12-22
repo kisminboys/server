@@ -22,3 +22,7 @@ module.exports = (req, res, next) => {
     next(err)
   })
 }
+
+/**
+ * req.params.className
+ */

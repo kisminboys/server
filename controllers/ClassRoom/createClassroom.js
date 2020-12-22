@@ -50,3 +50,12 @@ module.exports = (req, res, next) => {
     next(err)
   })
 }
+
+/**
+ * requirements:
+ * req.body.className
+ * req.body.teacherRole
+ * req.body.TeacherFullName
+ * req.body.StudentFullName
+ * 
+ */

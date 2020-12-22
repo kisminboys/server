@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Exam.belongsTo(models.Classroom)
       Exam.belongsTo(models.Subject)
-      Exam.belongsTo(models.QuestionBank)
+      // Exam.belongsTo(models.QuestionBank)
     }
   };
   Exam.init({

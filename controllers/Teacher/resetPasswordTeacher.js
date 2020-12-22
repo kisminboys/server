@@ -20,9 +20,10 @@ module.exports = async (req, res, next) => {
         {
         where: {
           id
-        }
+        },
+        returning: true
       })
-      res.status(200).json({ updatedTeacher })
+      res.status(200).json(updatedTeacher)
     }else throw { status: 400, message: 'invalid password'}
   } catch (error) {
     next(error)

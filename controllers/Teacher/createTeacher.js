@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const newTeacher = await Teacher.create(payload)
+    const newTeacher = await Teacher.create(payload, { validate: false })
     if(newTeacher) {
       sendEmail(req.body.email, newTeacher.email, newTeacher.password)
       res.status(201).json(newTeacher)

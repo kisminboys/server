@@ -101,7 +101,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Student.addHook('beforeCreate', student => {
     if (!student.email) {
-      let temp
+      let temp = ''
       for (let i = 0; i < getFullName.length; i++) {
         if (getFullName[i] === ' ') temp += '.'
         else if (getFullName[i - 5] === ' ') break

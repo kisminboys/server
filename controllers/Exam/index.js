@@ -1,3 +1,4 @@
 module.exports = {
-  createExam: require('./createExam')
+  createExam: require('./createExam'),
+  getAllExam: require('./getAllExam')
 }

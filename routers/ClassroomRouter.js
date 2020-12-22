@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const ClassroomController = require('../controllers/ClassRoom')
+const { ClassRoom } = require('../controllers')
 
-router.post('/', ClassroomController.createClass)
-router.get('/', ClassroomController.showClass)
-router.get('/:className', ClassroomController.showById)
-router.put('/:className', ClassroomController.editClass)
-router.delete('/:className', ClassroomController.deleteClass)
+router.post('/', ClassRoom.createClass)
+router.get('/', ClassRoom.showClass)
+router.get('/:className', ClassRoom.showById)
+router.put('/:className', ClassRoom.editClass)
+router.delete('/:className', ClassRoom.deleteClass)
 
 module.exports = router

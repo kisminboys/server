@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const QuestionBankController = require('../controllers/QuestionBank')
+const { QuestionBank } = require('../controllers')
 
-router.post('/', QuestionBankController.create)
-router.get('/', QuestionBankController.read)
-router.get('/:id', QuestionBankController.get)
-router.put('/:id', QuestionBankController.update)
-router.delete('/:id', QuestionBankController.destroy)
+router.post('/', QuestionBank.create)
+router.get('/', QuestionBank.read)
+router.get('/:id', QuestionBank.get)
+router.put('/:id', QuestionBank.update)
+router.delete('/:id', QuestionBank.destroy)
 
 module.exports = router

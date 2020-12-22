@@ -4,7 +4,9 @@ module.exports = async (req, res, next) => {
   const id = req.params.id
 
   try {
-    const findTeacher = await Teacher.findByPk(id)
+    const findTeacher = await Teacher.findByPk(id, {
+      include: [ Subject, Classroom ]
+    })
 
     if(findTeacher){
       res.status(200).json(findTeacher)

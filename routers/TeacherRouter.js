@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const { Teacher } = require('../controllers')
-const { route } = require('./AdminRouter')
 
 router.get('/', Teacher.read)
 router.get('/:id', Teacher.find)

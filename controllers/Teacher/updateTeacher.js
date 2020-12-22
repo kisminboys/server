@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
     SubjectId: req.body.SubjectId,
     ClassroomId: req.body.classroomId
   }
-
+  console.log(payload);
   try {
     const updatedTeacher = await Teacher.update(payload, {
       where: {

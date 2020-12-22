@@ -1,7 +1,7 @@
 module.exports = {
-  createSubject: require('./createSubject'),
-  readSubject: require('./readSubject'),
-  getSubject: require('./getSubject'),
-  updateSubject: require('./updateSubject'),
-  deleteSubject: require('./deleteSubject') 
+  create: require('./createSubject'),
+  read: require('./readSubject'),
+  get: require('./getSubject'),
+  update: require('./updateSubject'),
+  destroy: require('./deleteSubject') 
 }

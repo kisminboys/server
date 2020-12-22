@@ -6,7 +6,7 @@ module.exports = async ( req, res, next) => {
     email: req.body.email,
     password: req.body.password
   }
-
+  console.log(payload);
   try {
     const findUser = [
       Teacher.findOne({ where: {email: payload.email}}),
@@ -15,7 +15,7 @@ module.exports = async ( req, res, next) => {
 
     const results = await Promise.all(findUser)
 
-    const user = results.filter(e => e.id)
+    const user = results.filter(e => e)
 
     if(user.length && passHelper.comparePassword(payload.password, user[0].password)){
       res.status(200).json({ 

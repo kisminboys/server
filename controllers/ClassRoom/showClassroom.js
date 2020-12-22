@@ -1,7 +1,9 @@
 const { Classroom } = require('../../models')
 
 module.exports = (req, res, next) => {
-  Classroom.findAll()
+  Classroom.findAll({
+    include: { all: true }
+  })
     .then(classrooms => {
       res.status(200).json(classrooms)
     })

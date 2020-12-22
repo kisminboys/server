@@ -27,4 +27,6 @@ module.exports = async (req, res, next) => {
  * req.body.address
  * req.body.photo
  * req.body.phoneNumber
+ * req.body.classroomId
+ * req.body.subjectId
  */

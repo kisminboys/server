@@ -3,5 +3,5 @@ module.exports = {
   editClass: require('./editClassroom'),
   deleteClass: require('./deleteClassroom'),
   showClass: require('./showClassroom'),
-  showById: require('./showById')
+  showByClassName: require('./showByClassName')
 }

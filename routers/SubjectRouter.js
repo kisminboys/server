@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const { Subject } = require('../controllers')
+const { authorizationAdmin } = require('../middlewares')
 
+router.use(authorizationAdmin)
 router.post('/', Subject.create)
 router.get('/', Subject.read)
 router.get('/:id', Subject.get)

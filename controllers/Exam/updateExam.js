@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
       Classroom.findOne({ where: { className: req.body.className }})
     ]
     const findData = await Promise.all(arrPromise)
-    const data = findData.filter(e => e.id)
+    const data = findData.filter(e => e)
     if(data.length === findData.length) {
       const payload = {
         schedule: req.body.schedule,

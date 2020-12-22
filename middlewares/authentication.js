@@ -12,7 +12,9 @@ module.exports = async(req, res, next) => {
         Admin.findOne({ where: { id: decoded.id }})
       ]
       const findUser = await Promise.all(arrPromises)
-      const result = findUser.filter(e => e.id)
+      // console.log(findUser);
+      const result = findUser.filter(e => e)
+      // console.log(result, '<<< result');
       if(result.length) {
         req.loginUser = decoded
         next()

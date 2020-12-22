@@ -11,9 +11,11 @@ module.exports = async (req, res, next) => {
       photo: req.body.photo,
       gender: req.body.gender,
       birthDate: req.body.birthDate,
-      batch: req.body.batch
+      batch: req.body.batch,
+      // password: ''
     }
-    const newData = await Student.create(data)
+    console.log('sampe');
+    const newData = await Student.create(data, { validate: false})
     if (newData) {
       sendEmail(req.body.email, newData.email, process.env.DEFAULT_STUDENT_PASS)
       res.status(201).json({

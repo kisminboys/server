@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      QuestionBank.belongsTo(models.Subject)
+      QuestionBank.hasMany(models.Exam)
     }
   };
   QuestionBank.init({

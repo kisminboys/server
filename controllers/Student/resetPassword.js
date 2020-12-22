@@ -3,7 +3,7 @@ const { passHelper } = require('../../helpers')
 
 module.exports = async (req, res, next) => {
   try {
-    const findStudent = await Student.findOne({ where: { email: req.loginUser.email } })
+    const findStudent = await Student.findOne({ where: { id: req.loginUser.id } })
     const oldPassword = passHelper.comparePassword(req.body.oldPassword, findStudent.password)
     if (!oldPassword) throw { status: 400, message: 'Wrong password' }
     else {

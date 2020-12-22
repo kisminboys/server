@@ -5,8 +5,8 @@ module.exports = async (req, res, next) => {
   const id = req.loginUser.id
   
   const payload = {
-    oldPassword = req.body.oldPassword,
-    newPassword = req.body.newPassword
+    oldPassword: req.body.oldPassword,
+    newPassword: req.body.newPassword
   }
 
   try {
@@ -22,6 +22,7 @@ module.exports = async (req, res, next) => {
           id
         }
       })
+      res.status(200).json({ updatedTeacher })
     }else throw { status: 400, message: 'invalid password'}
   } catch (error) {
     next(error)

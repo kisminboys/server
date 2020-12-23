@@ -1,5 +1,5 @@
 const { Teacher } = require('../../models')
-const { sendEmail } = require('../../helpers')
+const { sendEmail, passHelper } = require('../../helpers')
 
 module.exports = async (req, res, next) => {
   const payload = {
@@ -9,13 +9,14 @@ module.exports = async (req, res, next) => {
     phoneNumber: req.body.phoneNumber,
     photo: req.body.photo,
     gender: req.body.gender,
-    birthDate: req.body.birthDate
+    birthDate: req.body.birthDate,
+    password: passHelper.randomPassword()
   }
 
   try {
     const newTeacher = await Teacher.create(payload, { validate: false })
     if(newTeacher) {
-      sendEmail(req.body.email, newTeacher.email, process.env.DEFAULT_TEACHER_PASS)
+      sendEmail(req.body.email, newTeacher.email, payload.password)
       res.status(201).json(newTeacher)
     }    
   } catch (error) {

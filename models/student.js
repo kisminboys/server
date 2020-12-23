@@ -96,7 +96,7 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   Student.addHook('beforeCreate', student => {
-    if (!student.password) student.password = passHelper.generatePassword(process.env.DEFAULT_STUDENT_PASS)
+    student.password = passHelper.generatePassword(student.password)
   })
 
   Student.addHook('beforeCreate', student => {

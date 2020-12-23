@@ -1,7 +1,8 @@
 const { Student } = require('../../models')
-const { sendEmail } = require('../../helpers')
+const { sendEmail, passHelper } = require('../../helpers')
 
 module.exports = async (req, res, next) => {
+  const generatedPassword = passHelper.randomPassword()
   try {
     const data = {
       firstName: req.body.firstName,
@@ -12,12 +13,12 @@ module.exports = async (req, res, next) => {
       gender: req.body.gender,
       birthDate: req.body.birthDate,
       batch: req.body.batch,
-      // password: ''
+      password: generatedPassword
     }
     console.log('sampe');
     const newData = await Student.create(data, { validate: false})
     if (newData) {
-      sendEmail(req.body.email, newData.email, process.env.DEFAULT_STUDENT_PASS)
+      sendEmail(req.body.email, newData.email, generatedPassword)
       res.status(201).json({
         id: newData.id,
         firstName: newData.firstName,

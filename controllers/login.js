@@ -1,4 +1,4 @@
-const { Teacher, Student } = require('../models')
+const { Teacher, Student, Admin } = require('../models')
 const { passHelper, jwtHelper } = require('../helpers')
 
 module.exports = async ( req, res, next) => {
@@ -11,6 +11,7 @@ module.exports = async ( req, res, next) => {
     const findUser = [
       Teacher.findOne({ where: {email: payload.email}}),
       Student.findOne({ where: {email: payload.email}}),
+      Admin.findOne({ where: {email: payload.email}})
     ]
 
     const results = await Promise.all(findUser)
